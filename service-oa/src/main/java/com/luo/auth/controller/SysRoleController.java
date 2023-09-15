@@ -42,6 +42,16 @@ public class SysRoleController {
         return Result.ok(list);
     }
 
+    @ApiOperation("根据id查询")
+    @GetMapping("get/{id}")
+    public Result<SysRole> getById(@PathVariable Long id){
+        SysRole sysRoleServiceById = sysRoleService.getById(id);
+        if (sysRoleServiceById == null ||sysRoleServiceById.getId() == null){
+            return Result.fail();
+        }
+        return Result.ok(sysRoleServiceById);
+    }
+
     //添加角色
     @ApiOperation("添加角色")
     @PostMapping("save")
